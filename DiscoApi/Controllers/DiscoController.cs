@@ -20,6 +20,16 @@ namespace DiscoApi.Controllers
             _httpClientFactory = httpClientFactory;  
         }
 
+        /// <summary>
+        ///   Gets the specified quantity of items or a random quantity from 1 to 5.
+        /// </summary>
+        /// <param name="numberOfItems">
+        ///   Quantity of items to be returned. Accepts numbers 1 to 5 and null.
+        /// </param>
+        /// <returns>
+        ///   Returns a collection of items based in <paramref name="numberOfItems"/>. 
+        ///   If <paramref name="numberOfItems"/> is null or higher than 5 or less than 1, a random quantity from 1 to 5 will be returned.
+        /// </returns>
         [HttpGet]
         [Route("{numberOfItems:range(1,5)?}")]
         public async Task<ActionResult<IEnumerable<Release>>> Get(int? numberOfItems = null) 
